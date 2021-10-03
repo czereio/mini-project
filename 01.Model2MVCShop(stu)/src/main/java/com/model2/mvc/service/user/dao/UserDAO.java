@@ -59,6 +59,7 @@ public class UserDAO {
 			userVO.setEmail(rs.getString("EMAIL"));
 			userVO.setRegDate(rs.getDate("REG_DATE"));
 		}
+		System.out.println(userVO+" - UserDAO");
 		
 		con.close();
 

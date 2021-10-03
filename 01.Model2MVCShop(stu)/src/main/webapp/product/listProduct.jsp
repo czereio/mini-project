@@ -162,7 +162,7 @@ function fncGetProductList(){
 		<td align="center"><%=no--%></td>	<%-- 다음 출력 시 list.size()의 정수가 1씩 감소하여 출력 --%>
 		<td></td>
 		<td align="left">
-			<a href="/getProduct.do?prodNo=<%=no%>"><%=productVO.getProdName()%></a>
+			<a href="/getProduct.do?prodNo=<%=productVO.getProdNo()%>"><%=productVO.getProdName()%></a>
 		</td>
 		<td></td>
 		<td align="left"><%=productVO.getPrice()%></td>

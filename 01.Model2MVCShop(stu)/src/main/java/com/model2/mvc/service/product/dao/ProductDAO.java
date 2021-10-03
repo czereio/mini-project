@@ -46,9 +46,9 @@ public class ProductDAO {
 
 		ResultSet rs = stmt.executeQuery();
 
-		ProductVO productVO = null;
+		ProductVO productVO = new ProductVO();
 		while (rs.next()) {
-			productVO = new ProductVO();
+			//productVO = new ProductVO();
 			productVO.setProdNo(rs.getInt("PROD_NO"));
 			productVO.setProdName(rs.getString("PROD_NAME"));
 			productVO.setProdDetail(rs.getString("PROD_DETAIL"));
@@ -71,11 +71,11 @@ public class ProductDAO {
 		String sql = "SELECT * FROM product ";
 		if (searchVO.getSearchCondition() != null) {	//검색 시 상품번호(value=0), 상품명(value=1), 상품가격(value=2) 중 해당하는 번호와 일치할 때의 query 입력
 			if (searchVO.getSearchCondition().equals("0")) {
-				sql += " WHERE prod_no='"+searchVO.getSearchKeyword()+"'";
+				sql += " WHERE prod_no="+Integer.parseInt(searchVO.getSearchKeyword());
 			} else if (searchVO.getSearchCondition().equals("1")) {
 				sql += " WHERE prod_name='"+searchVO.getSearchKeyword()+"'";
 			} else {
-				sql += " WHERE price="+searchVO.getSearchKeyword();
+				sql += " WHERE price="+Integer.parseInt(searchVO.getSearchKeyword());
 			}
 		}
 		sql += " ORDER BY prod_no";
