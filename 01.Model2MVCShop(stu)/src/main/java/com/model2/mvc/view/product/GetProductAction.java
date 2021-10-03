@@ -1,5 +1,6 @@
 package com.model2.mvc.view.product;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +21,9 @@ public class GetProductAction extends Action{
 		ProductVO productVO = service.getProduct(prodNo);
 		
 		request.setAttribute("productVO", productVO);
+		
+		//Cookie cookie = new Cookie("prodNo", request.getParameter("prodNo"));
+		response.addCookie( new Cookie("history", request.getParameter("prodNo")+",") ); //왜 최근 본 상품 항목이 갱신이 되고 있지?
 
 		return "forward:/product/getProduct.jsp";
 	}

@@ -11,7 +11,7 @@
 	String role = "";
 	
 	if(vo != null) {
-		role=vo.getRole();
+		role = vo.getRole();
 	}
 %>	
 
