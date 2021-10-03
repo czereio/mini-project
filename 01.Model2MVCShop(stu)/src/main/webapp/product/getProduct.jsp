@@ -1,9 +1,18 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
 
 <%@ page import="com.model2.mvc.service.product.vo.*" %>
+<%@ page import="com.model2.mvc.service.user.vo.*" %>
 
 <%
 	ProductVO productVO = (ProductVO)request.getAttribute("productVO");
+
+	UserVO vo = (UserVO)session.getAttribute("user");
+	
+	String role = "";
+	
+	if(vo != null) {
+		role=vo.getRole();
+	}
 %>	
 
 <html>
@@ -125,7 +134,7 @@
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-					<a href="/addPurchaseView.do?prod_no=10004">구매</a>
+					<a href="/listProduct.do">목록</a>
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23">
@@ -136,11 +145,40 @@
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
+					<a href="/addPurchaseView.do?prod_no=<%=productVO.getProdNo()%>">구매</a>
+				</td>
+				<td width="14" height="23">
+					<img src="/images/ct_btnbg03.gif" width="14" height="23">
+				</td>
+				<td width="30"></td>
+				
+<%
+		if(role.equals("admin")){
+%>
+				<td width="17" height="23">
+						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
+					</td>
+					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
+						<a href="/updateProductView.do?prodNo=<%=productVO.getProdNo()%>">수정</a>
+					</td>
+					<td width="14" height="23">
+						<img src="/images/ct_btnbg03.gif" width="14" height="23">
+					</td>
+				<td width="30"></td>
+<%
+		}
+%>
+				<!--
+				<td width="17" height="23">
+					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
+				</td>
+				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
 					<a href="javascript:history.go(-1)">이전</a>
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23">
 				</td>
+				-->
 			</tr>
 		</table>
 

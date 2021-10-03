@@ -30,7 +30,14 @@ public class ProductVO {
 		this.fileName = fileName;
 	}
 	public String getManuDate() {
-		return manuDate;
+		String[] date = manuDate.split("-");
+		
+		String result = "";
+		for (int i = 0; i < date.length; i++) {
+			result += date[i];
+		}
+		
+		return result;
 	}
 	public void setManuDate(String manuDate) {
 		this.manuDate = manuDate;
