@@ -20,7 +20,7 @@
 		for (int i = 0; i < cookies.length; i++) {
 			Cookie cookie = cookies[i];
 			if (cookie.getName().equals("history")) {
-				history = cookie.getValue();
+				history += cookie.getValue()+",";
 			}
 		}
 		

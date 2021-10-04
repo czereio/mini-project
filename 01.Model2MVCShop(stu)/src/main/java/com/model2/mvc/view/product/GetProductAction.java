@@ -23,7 +23,7 @@ public class GetProductAction extends Action{
 		request.setAttribute("productVO", productVO);
 		
 		//Cookie cookie = new Cookie("prodNo", request.getParameter("prodNo"));
-		response.addCookie( new Cookie("history", request.getParameter("prodNo")+",") ); //왜 최근 본 상품 항목이 갱신이 되고 있지?
+		response.addCookie( new Cookie("history", request.getParameter("prodNo")) ); //왜 최근 본 상품 항목이 갱신이 되고 있지?
 
 		return "forward:/product/getProduct.jsp";
 	}
