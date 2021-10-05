@@ -10,7 +10,7 @@
 	당신이 열어본 상품을 알고 있다
 <br>
 <br>
-<%	//왜 최근 본 상품 목록이 쌓이는 게 아니고 가장 최근에 본 품목 하나만 cookie로 받아서 출력하는 거지...?
+<%	//왜 최근 본 상품 목록이 쌓이는 게 아니고 가장 최근에 본 품목 하나만 cookie로 받아서 출력하는 거지...? --> GetProductAction에서 해결
 	request.setCharacterEncoding("euc-kr");
 	response.setCharacterEncoding("euc-kr");
 	
@@ -20,7 +20,7 @@
 		for (int i = 0; i < cookies.length; i++) {
 			Cookie cookie = cookies[i];
 			if (cookie.getName().equals("history")) {
-				history += cookie.getValue()+",";
+				history = cookie.getValue()+",";
 			}
 		}
 		
