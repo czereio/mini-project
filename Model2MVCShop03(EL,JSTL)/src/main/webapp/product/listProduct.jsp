@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 <!-- 
-function fncGetProductList(currentPage) {
+function fncGetList(currentPage) {
 	document.getElementById("currentPage").value = currentPage;
    	document.detailForm.submit();		
 }
