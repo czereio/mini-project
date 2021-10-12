@@ -6,7 +6,7 @@ public class SearchVO {
 	private int page;
 	String searchCondition;
 	String searchKeyword;
-	int pageUnit;
+	int pageUnit;		//하단 페이지 번호 화면에 보여지는 수
 	
 	public SearchVO(){
 	}

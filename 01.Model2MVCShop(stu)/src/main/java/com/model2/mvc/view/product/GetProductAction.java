@@ -15,6 +15,9 @@ public class GetProductAction extends Action{
 	@Override
 	public String execute(	HttpServletRequest request,
 												HttpServletResponse response) throws Exception {
+		
+		System.out.println("hi - GetProductAction");
+		
 		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
 		
 		ProductService service = new ProductServiceImpl();
@@ -28,12 +31,14 @@ public class GetProductAction extends Action{
 			Cookie cookie = cookies[i];
 			if (cookie.getName().equals("history")) {	//cookie의 name이 history일 경우에 실행시킬 항목
 				history = cookie.getValue();	//cookie의 value를 history에 저장
-				history += ","+request.getParameter("prodNo");	//cookie의 name이 history일 경우 값을 ','로 이어붙여 history.jsp에서 parsing 하게 함
-				response.addCookie( new Cookie("history", history) );
+				history += ",";
 			}
 		}
 		
-		System.out.println(history);
+		history += request.getParameter("prodNo");	//cookie의 name이 history일 경우 값을 ','로 이어붙여 history.jsp에서 parsing 하게 함
+		response.addCookie( new Cookie("history", history) );
+		
+		System.out.println(history+" - GetProductAction");
 		//Cookie cookie = new Cookie("prodNo", request.getParameter("prodNo"));
 		//response.addCookie( new Cookie("history", request.getParameter("prodNo")) ); //왜 최근 본 상품 항목이 갱신이 되고 있지?
 		

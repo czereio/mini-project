@@ -24,9 +24,9 @@
 			}
 		}
 		
-		System.out.println(history);
+		System.out.println(history+" - history.jsp");
 		
-		if (history != null) {
+		if (history != null || history != "") {
 			String[] h = history.split(",");
 			for (int i = 0; i < h.length; i++) {
 				if (!h[i].equals("null")) {
