@@ -36,7 +36,7 @@ public class GetProductAction extends Action{
 		}
 		
 		history += request.getParameter("prodNo");	//cookie의 name이 history일 경우 값을 ','로 이어붙여 history.jsp에서 parsing 하게 함
-		response.addCookie( new Cookie("history", history) );
+		response.addCookie( new Cookie("history", history) );	//공통적인 쿠키 내용 추가 부분
 		
 		System.out.println(history+" - GetProductAction");
 		//Cookie cookie = new Cookie("prodNo", request.getParameter("prodNo"));
