@@ -43,7 +43,7 @@
 	 		image_file = #{fileName:VARCHAR},
 	 		reg_date = SYSDATE
 	 	</set>
-	 		WHERE prod_no = #{prod_no}
+	 		WHERE prod_no = #{prodNo}
 	 </update>
 		 
 	<!-- SQL : SELECT LIST -->

@@ -50,7 +50,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void updateProduct(Product product) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.insert("ProductMapper.updateProduct", product);
+		sqlSession.update("ProductMapper.updateProduct", product);
 	}
 
 	@Override
