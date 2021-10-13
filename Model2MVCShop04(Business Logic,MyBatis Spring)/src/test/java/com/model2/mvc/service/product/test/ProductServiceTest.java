@@ -1,4 +1,4 @@
-package com.model2.mvc.service.user.test;
+package com.model2.mvc.service.product.test;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.model2.mvc.common.Search;
+import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.User;
+import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.user.UserService;
 
 
@@ -26,41 +28,38 @@ import com.model2.mvc.service.user.UserService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:config/commonservice.xml" })
-public class UserServiceTest {
+public class ProductServiceTest {
 
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
 	@Autowired
-	@Qualifier("userServiceImpl")
-	private UserService userService;
+	@Qualifier("productServiceImpl")
+	private ProductService productService;
 
 	@Test
-	public void testAddUser() throws Exception {
+	public void testaddProduct() throws Exception {
 		
-		User user = new User();
-		user.setUserId("testUserId");
-		user.setUserName("testUserName");
-		user.setPassword("testPasswd");
-		user.setSsn("1111112222222");
-		user.setPhone("111-2222-3333");
-		user.setAddr("경기도");
-		user.setEmail("test@test.com");
+		Product product = new Product();
+		//product.setProdNo(19999);
+		product.setProdName("testProdName");
+		product.setProdDetail("testProdDetail");
+		product.setManuDate("19980813");
+		product.setPrice(99900);
+		product.setFileName("testFileName");
 		
-		userService.addUser(user);
+		productService.addProduct(product);
 		
-		user = userService.getUser("testUserId");
+		product = productService.getProduct(product.getProdNo());	//이걸 무슨 수로 가져오지?
 
 		//==> console 확인
-		System.out.println(user);
+		System.out.println(product);
 		
 		//==> API 확인
-		/*
-		Assert.assertEquals("testUserId", user.getUserId());
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("testPasswd", user.getPassword());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
-		*/
+		//Assert.assertEquals(prodNo,product.getProdNo());
+		//Assert.assertEquals("testProdName", product.getProdName());
+		//Assert.assertEquals("testProdDetail", product.getProdDetail());
+		//Assert.assertEquals("19980813", product.getManuDate());
+		//Assert.assertEquals(99900, product.getPrice());
+		//Assert.assertEquals("testFileName", product.getFileName());
 	}
 	
 	//@Test
