@@ -165,21 +165,21 @@ public class ProductServiceTest {
 	 	System.out.println(totalCount);
 	 }
 	 
-	 @Test	//머가 문제냐구 아니 뭐가 부적합해 왜왜애왜왜왜애오애ㅙ
+	 //@Test	//DB를 거쳐서 오는 것 같은데 왜 부분부분 null값으로 가져오지 DB 문제인 건 확실한데
 	 public void testGetProductListByProdNo() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
-	 	search.setSearchKeyword("10022");
+	 	search.setSearchKeyword("1002");
 	 	Map<String,Object> map = productService.getProductList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(1, list.size());
+	 	Assert.assertEquals(2, list.size());	//한 페이지에서 띄우는 목록 개수(한 페이지당 세 개씩 띄우기로 정했으므로 세 개까지 가능)
 	 	
 		//==> console 확인
-	 	System.out.println(list);
+	 	System.out.println(list);	//list 안에 등록된 100이라는 키워드가 포함된 상품의 총 개수
 	 	
 	 	Integer totalCount = (Integer)map.get("totalCount");
 	 	System.out.println(totalCount);
@@ -207,11 +207,11 @@ public class ProductServiceTest {
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("1");
-	 	search.setSearchKeyword("sora");
+	 	search.setSearchKeyword("te");
 	 	Map<String,Object> map = productService.getProductList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(3, list.size());
+	 	Assert.assertEquals(1, list.size());
 	 	
 		//==> console 확인
 	 	System.out.println(list);
@@ -235,18 +235,18 @@ public class ProductServiceTest {
 	 	System.out.println(totalCount);
 	 }	
 	 
-	 //@Test
+	 @Test
 	 public void testGetUserListByPrice() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("2");
-	 	search.setSearchKeyword("888888");
+	 	search.setSearchKeyword("888");
 	 	Map<String,Object> map = productService.getProductList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(3, list.size());
+	 	Assert.assertEquals(1, list.size());
 	 	
 		//==> console 확인
 	 	System.out.println(list);

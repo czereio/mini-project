@@ -33,7 +33,7 @@ public class UserServiceTest {
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
-	@Test
+	//@Test
 	public void testAddUser() throws Exception {
 		
 		User user = new User();
@@ -185,21 +185,21 @@ public class UserServiceTest {
 	 	System.out.println(totalCount);
 	 }
 	 
-	 //@Test
+	 @Test
 	 public void testGetUserListByUserId() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
-	 	search.setSearchKeyword("admin");
+	 	search.setSearchKeyword("user");
 	 	Map<String,Object> map = userService.getUserList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(1, list.size());
+	 	Assert.assertEquals(3, list.size());
 	 	
 		//==> console »Æ¿Œ
-	 	//System.out.println(list);
+	 	System.out.println(list);
 	 	
 	 	Integer totalCount = (Integer)map.get("totalCount");
 	 	System.out.println(totalCount);
