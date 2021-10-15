@@ -29,9 +29,9 @@ import com.model2.mvc.service.user.UserService;
 //==> Meta-Data 를 다양하게 Wiring 하자...
 //@ContextConfiguration(locations = { "classpath:config/context-*.xml" })
 @ContextConfiguration	(locations = {	"classpath:config/context-common.xml",
-																	"classpath:config/context-aspect.xml",
-																	"classpath:config/context-mybatis.xml",
-																	"classpath:config/context-transaction.xml" })
+										"classpath:config/context-aspect.xml",
+										"classpath:config/context-mybatis.xml",
+										"classpath:config/context-transaction.xml" })
 //@ContextConfiguration(locations = { "classpath:config/context-common.xml" })
 public class UserServiceTest {
 
@@ -40,32 +40,34 @@ public class UserServiceTest {
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
-	@Test
+	//@Test
 	public void testAddUser() throws Exception {
 		
 		User user = new User();
-		user.setUserId("testUserId");
-		user.setUserName("testUserName");
-		user.setPassword("testPasswd");
-		user.setSsn("1111112222222");
-		user.setPhone("111-2222-3333");
-		user.setAddr("경기도");
-		user.setEmail("test@test.com");
+		user.setUserId("peach");
+		user.setUserName("momo");
+		user.setPassword("momo1");
+		user.setSsn("55555");
+		user.setPhone("555-5555-5555");
+		user.setAddr("forest");
+		user.setEmail("peach@peach.com");
 		
 		userService.addUser(user);
 		
-		user = userService.getUser("testUserId");
+		user = userService.getUser("peach");
 
 		//==> console 확인
 		//System.out.println(user);
 		
 		//==> API 확인
-		Assert.assertEquals("testUserId", user.getUserId());
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("testPasswd", user.getPassword());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
+		
+		Assert.assertEquals("peach", user.getUserId());
+		Assert.assertEquals("momo", user.getUserName());
+		Assert.assertEquals("momo1", user.getPassword());
+		Assert.assertEquals("555-5555-5555", user.getPhone());
+		Assert.assertEquals("forest", user.getAddr());
+		Assert.assertEquals("peach@peach.com", user.getEmail());
+		
 	}
 	
 	//@Test
@@ -81,21 +83,21 @@ public class UserServiceTest {
 //			user.setAddr("경기도");
 //			user.setEmail("test@test.com");
 		
-		user = userService.getUser("testUserId");
+		user = userService.getUser("peach");
 
 		//==> console 확인
 		//System.out.println(user);
 		
 		//==> API 확인
-		Assert.assertEquals("testUserId", user.getUserId());
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("testPasswd", user.getPassword());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
+		Assert.assertEquals("peach", user.getUserId());
+		Assert.assertEquals("momo", user.getUserName());
+		Assert.assertEquals("momo1", user.getPassword());
+		Assert.assertEquals("555-5555-5555", user.getPhone());
+		Assert.assertEquals("forest", user.getAddr());
+		Assert.assertEquals("peach@peach.com", user.getEmail());
 
-		Assert.assertNotNull(userService.getUser("user02"));
-		Assert.assertNotNull(userService.getUser("user05"));
+		Assert.assertNotNull(userService.getUser("user09"));
+		Assert.assertNotNull(userService.getUser("user18"));
 	}
 	
 	//@Test
@@ -104,15 +106,15 @@ public class UserServiceTest {
 		User user = userService.getUser("testUserId");
 		Assert.assertNotNull(user);
 		
-		Assert.assertEquals("testUserName", user.getUserName());
-		Assert.assertEquals("111-2222-3333", user.getPhone());
-		Assert.assertEquals("경기도", user.getAddr());
-		Assert.assertEquals("test@test.com", user.getEmail());
+		Assert.assertEquals("strawberry", user.getUserName());
+		Assert.assertEquals("111-1111-1115", user.getPhone());
+		Assert.assertEquals("tree", user.getAddr());
+		Assert.assertEquals("strawberry@berry.com", user.getEmail());
 
-		user.setUserName("change");
-		user.setPhone("777-7777-7777");
-		user.setAddr("change");
-		user.setEmail("change@change.com");
+		user.setUserName("strawberry");
+		user.setPhone("111-1111-1115");
+		user.setAddr("tree");
+		user.setEmail("strawberry@berry.com");
 		
 		userService.updateUser(user);
 		
@@ -123,10 +125,10 @@ public class UserServiceTest {
 		//System.out.println(user);
 			
 		//==> API 확인
-		Assert.assertEquals("change", user.getUserName());
-		Assert.assertEquals("777-7777-7777", user.getPhone());
-		Assert.assertEquals("change", user.getAddr());
-		Assert.assertEquals("change@change.com", user.getEmail());
+		Assert.assertEquals("strawberry", user.getUserName());
+		Assert.assertEquals("111-1111-1115", user.getPhone());
+		Assert.assertEquals("tree", user.getAddr());
+		Assert.assertEquals("strawberry@berry.com", user.getEmail());
 	 }
 	 
 	//@Test
@@ -197,7 +199,7 @@ public class UserServiceTest {
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
-	 	search.setSearchKeyword("admin");
+	 	search.setSearchKeyword("admi");
 	 	Map<String,Object> map = userService.getUserList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
@@ -225,14 +227,14 @@ public class UserServiceTest {
 	 	System.out.println(totalCount);
 	 }
 	 
-	 //@Test
+	 @Test
 	 public void testGetUserListByUserName() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("1");
-	 	search.setSearchKeyword("SCOTT");
+	 	search.setSearchKeyword("SCOT");
 	 	Map<String,Object> map = userService.getUserList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");

@@ -201,7 +201,7 @@ public class ProductServiceTest {
 	 }
 	 
 	 //@Test
-	 public void testGetUserListByProdName() throws Exception{
+	 public void testGetProductListByProdName() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
@@ -236,7 +236,7 @@ public class ProductServiceTest {
 	 }	
 	 
 	 @Test
-	 public void testGetUserListByPrice() throws Exception{
+	 public void testGetProductListByPrice() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);

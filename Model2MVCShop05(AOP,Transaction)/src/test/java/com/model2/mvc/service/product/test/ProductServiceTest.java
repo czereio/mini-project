@@ -27,7 +27,10 @@ import com.model2.mvc.service.user.UserService;
  * ㅇ @Test : 테스트 실행 소스 지정
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:config/commonservice.xml" })
+@ContextConfiguration(locations = { "classpath:config/context-common.xml",
+									"classpath:config/context-aspect.xml",
+									"classpath:config/context-mybatis.xml",
+									"classpath:config/context-transaction.xml" })
 public class ProductServiceTest {
 
 	//==>@RunWith,@ContextConfiguration 이용 Wiring, Test 할 instance DI
@@ -99,11 +102,11 @@ public class ProductServiceTest {
 		Product product = productService.getProduct(10040);
 		Assert.assertNotNull(product);
 		
-		Assert.assertEquals("2344", product.getProdName());
-		Assert.assertEquals("124", product.getProdDetail());
-		Assert.assertEquals("20211012", product.getManuDate());
-		Assert.assertEquals(19980, product.getPrice());
-		Assert.assertEquals("1235", product.getFileName());
+		Assert.assertEquals("bread", product.getProdName());
+		Assert.assertEquals("food", product.getProdDetail());
+		Assert.assertEquals("20211013", product.getManuDate());
+		Assert.assertEquals(4980, product.getPrice());
+		Assert.assertEquals("yammy", product.getFileName());
 
 		product.setProdName("bread");
 		product.setProdDetail("food");
@@ -165,7 +168,9 @@ public class ProductServiceTest {
 	 	System.out.println(totalCount);
 	 }
 	 
-	 //@Test	//DB를 거쳐서 오는 것 같은데 왜 부분부분 null값으로 가져오지 DB 문제인 건 확실한데
+	 //@Test
+	 //DB를 거쳐서 오는 것 같은데 왜 부분부분 null값으로 가져오지 DB 문제인 건 확실한데
+	 //이거 null값 나오는 이유 :: listProduct.jsp의 상품목록에서 공개하는 정보만 값 입력되어 있음
 	 public void testGetProductListByProdNo() throws Exception{
 		 
 	 	Search search = new Search();
@@ -201,7 +206,7 @@ public class ProductServiceTest {
 	 }
 	 
 	 //@Test
-	 public void testGetUserListByProdName() throws Exception{
+	 public void testGetProductListByProdName() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
@@ -211,7 +216,7 @@ public class ProductServiceTest {
 	 	Map<String,Object> map = productService.getProductList(search);
 	 	
 	 	List<Object> list = (List<Object>)map.get("list");
-	 	Assert.assertEquals(1, list.size());
+	 	Assert.assertEquals(2, list.size());
 	 	
 		//==> console 확인
 	 	System.out.println(list);
@@ -236,7 +241,7 @@ public class ProductServiceTest {
 	 }	
 	 
 	 @Test
-	 public void testGetUserListByPrice() throws Exception{
+	 public void testGetProductListByPrice() throws Exception{
 		 
 	 	Search search = new Search();
 	 	search.setCurrentPage(1);
