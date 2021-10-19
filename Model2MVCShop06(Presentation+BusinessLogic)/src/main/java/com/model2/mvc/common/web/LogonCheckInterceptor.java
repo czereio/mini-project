@@ -39,7 +39,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 		//==> 로그인 유무확인
 		HttpSession session = request.getSession(true);
 		User user = (User)session.getAttribute("user");
-
+		
 		//==> 로그인한 회원이라면...
 		if(   user != null   )  {
 			//==> 로그인 상태에서 접근 불가 URI
@@ -66,6 +66,14 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 				System.out.println("[ LogonCheckInterceptor end........]\n");
 				return true;
 			}
+			
+			/*
+			//listProduct일 경우
+			if(uri.indexOf("listProduct") != -1) {
+				request.getRequestDispatcher("/product/listProduct.jsp").forward(request, response);
+				return true;
+			}
+			*/	//06에서는 logout 상태 시 상품 검색 접근이 불가한데 이전 프로젝트(01-03)이나 07에서는 접근 가능하다고 함. 왜 그런지는 더 확인해봐야 할 듯
 			
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			System.out.println("[ 로그인 이전 ... ]");

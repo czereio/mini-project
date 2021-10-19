@@ -1,2 +1,7 @@
 /com/
 /sql/
+<<<<<<< HEAD
+=======
+/UserController.class
+/ProductController.class
+>>>>>>> refs/heads/new/dev
