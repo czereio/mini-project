@@ -139,7 +139,7 @@
 				</td>
 				<td width="30"></td>
 				
-				<c:if test="${user.role == 'admin' }">
+				<c:if test="${user.role == 'admin'}">
 					<td width="17" height="23">
 							<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 						</td>
