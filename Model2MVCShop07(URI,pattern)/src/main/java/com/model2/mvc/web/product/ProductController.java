@@ -81,13 +81,15 @@ public class ProductController {
 			Cookie cookie = cookies[i];
 			if (cookie.getName().equals("history")) {	//cookie의 name이 history일 경우에 실행시킬 항목
 				history = cookie.getValue();	//cookie의 value를 history에 저장
-				history += ",";
+				history += ",";	
 			}
 		}
 		
 		history += request.getParameter("prodNo");	//cookie의 name이 history일 경우 값을 ','로 이어붙여 history.jsp에서 parsing 하게 함
-		response.addCookie( new Cookie("history", history) );	//공통적인 쿠키 내용 추가 부분
-		
+		Cookie cookie = new Cookie("history", history);
+		cookie.setPath("/");
+		response.addCookie(cookie);	//공통적인 쿠키 내용 추가 부분
+	
 		return "forward:/product/getProduct.jsp";
 	}
 	

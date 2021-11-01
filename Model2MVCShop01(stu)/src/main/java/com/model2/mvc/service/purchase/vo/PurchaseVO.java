@@ -8,17 +8,17 @@ import com.model2.mvc.service.user.vo.UserVO;
 
 public class PurchaseVO {
 	
-	private UserVO buyer;
-	private String divyAddr;
-	private String divyDate;
-	private String divyRequest;
-	private Date orderDate;
-	private String paymentOption;
-	private ProductVO purchaseProd;
-	private String receiverName;
-	private String receiverPhone;
-	private String tranCode;
-	private int tranNo;
+	private UserVO buyer;	//구매자 정보
+	private String divyAddr;	//배송지
+	private String divyDate;	//배송일
+	private String divyRequest;	//배송요청사항
+	private Date orderDate;		//주문일자
+	private String paymentOption;	//결제 옵션
+	private ProductVO purchaseProd;	//판매 상품 정보
+	private String receiverName;	//수령인 이름
+	private String receiverPhone;	//수령인 전화번호
+	private String tranCode;		//배송상태(로 추정)
+	private int tranNo;		//상품번호처럼 구매순으로 번호 매길 듯
 	
 	public PurchaseVO(){
 	}
@@ -36,7 +36,13 @@ public class PurchaseVO {
 		this.divyAddr = divyAddr;
 	}
 	public String getDivyDate() {
-		return divyDate;
+		String[] date = divyDate.split("-");
+		
+		String result = "";
+		for (int i = 0; i < date.length; i++) {
+			result += date[i];
+		}
+		return result;
 	}
 	public void setDivyDate(String divyDate) {
 		this.divyDate = divyDate;

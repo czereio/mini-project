@@ -15,21 +15,28 @@
 <%
 	request.setCharacterEncoding("euc-kr");
 	response.setCharacterEncoding("euc-kr");
+	
+	System.out.println("Hi this is history.jsp");
+	
 	String history = null;
 	Cookie[] cookies = request.getCookies();
 	if (cookies!=null && cookies.length > 0) {
 		for (int i = 0; i < cookies.length; i++) {
 			Cookie cookie = cookies[i];
+			//cookie.setPath("/");
+			//System.out.println(cookies.length);
+			//System.out.println(cookies[i]+" :: "+i+"번 index");
 			if (cookie.getName().equals("history")) {
 				history = cookie.getValue();
 			}
 		}
+		//System.out.println(history+" - request로 가져온 history value");
 		if (history != null) {
 			String[] h = history.split(",");
 			for (int i = 0; i < h.length; i++) {
 				if (!h[i].equals("null")) {
 %>
-<a href="/getProduct.do?prodNo=<%=h[i]%>&menu=search"
+<a href="/getProduct?prodNo=<%=h[i]%>"
 	target="rightFrame"><%=h[i]%></a>
 <br>
 <%

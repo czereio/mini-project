@@ -41,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
 	public Product getProduct(int prodNo) throws Exception {
 		// TODO Auto-generated method stub
 		return productDao.findProduct(prodNo);
+		
 	}
 
 	@Override
