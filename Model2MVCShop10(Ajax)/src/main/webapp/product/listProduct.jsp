@@ -30,8 +30,40 @@
 		//상품 상세정보가 안 불러와지는데 . . . 뭐냐 이거 . . .
 		$( ".ct_list_pop td:nth-child(3)" ).on("click" , function() {
 			//Debug..
-			//alert(  $( this ).text().trim() );
-			self.location ="/product/getProduct?prodNo="+$(".ct_list_pop td:nth-child(3)").attr("data-prodNo");//attributer로 접근 가능
+			//alert($(".ct_list_pop td:nth-child(3)").attr("data-prodNo"));
+			//self.location ="/product/getProduct?prodNo="+$(".ct_list_pop td:nth-child(3)").attr("data-prodNo");//attributer로 접근 가능
+			//var prodNo = $(".ct_list_pop td:nth-child(3)").attr("data-prodNo");
+			var prodNo = $(this).find("input[name=prodNo]").val();
+			alert(prodNo);
+			$.ajax( 
+					{
+						url : "/product/json/getProduct/"+prodNo ,
+						method : "GET" ,
+						dataType : "json" ,
+						headers : {
+							"Accept" : "application/json",
+							"Content-Type" : "application/json"
+						},
+						success : function(JSONData , status) {
+
+							//Debug...
+							//alert(status);
+							//Debug...
+							//alert("JSONData : \n"+JSONData);
+							
+							var displayValue = "<h3>"
+														+"상품명 : "+JSONData.prodName+"<br/>"
+														+"상세정보 : "+JSONData.prodDetail+"<br/>"
+														+"제조일자 : "+JSONData.manuDate+"<br/>"
+														+"가   격 : "+JSONData.price+"<br/>"
+														+"등록일 : "+JSONData.regDateString+"<br/>"
+														+"</h3>";
+							//Debug...									
+							//alert(displayValue);
+							$("h3").remove();
+							$( "#"+prodNo+"" ).html(displayValue);
+						}
+				});
 		});
 		
 		$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
@@ -132,6 +164,7 @@
 			<td></td>
 			<td align="left" data-prodNo="${product.prodNo}"><!-- data-prodNo :: 값을 받아오고 싶은데 화면에 출력하고 싶지는 않을 때 쓰는 attributer -->
 				<!-- <a href="/product/getProduct?prodNo=${product.prodNo}">${product.prodName}</a> -->
+				<input type="hidden" name="prodNo" value="${product.prodNo}"/>
 				${product.prodName}
 			</td>
 			<td></td>
@@ -142,7 +175,7 @@
 			<td align="left"><%--=productVO.getTranCode()--%>판매중</td>	
 		</tr>
 		<tr>
-			<td colspan="11" bgcolor="D6D7D6" height="1"></td>
+			<td id="${product.prodNo}" colspan="11" bgcolor="D6D7D6" height="1"></td>
 		</tr>	
 	</c:forEach>
 </table>

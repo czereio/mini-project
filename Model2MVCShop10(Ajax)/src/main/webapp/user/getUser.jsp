@@ -30,7 +30,7 @@
 					//Debug..
 					//alert(  $( "td.ct_btn01:contains('¼öÁ¤')" ).html() );
 					self.location = "/user/updateUser?userId=${user.userId}"
-				});
+			});
 		});
 		
 	</script>
