@@ -157,7 +157,7 @@
 					<td class="ct_ttl02">
 						<c:if test="${ ! empty result }">
 							${userId} 는 사용
-							${ result ? "" : "불" }가능 합니다.
+							${ result ? "" : "불" }가능합니다.
 						</c:if>
 					</td>
 				</tr>
