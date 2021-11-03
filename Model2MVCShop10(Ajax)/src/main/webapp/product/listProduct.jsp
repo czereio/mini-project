@@ -34,7 +34,7 @@
 			//self.location ="/product/getProduct?prodNo="+$(".ct_list_pop td:nth-child(3)").attr("data-prodNo");//attributer로 접근 가능
 			//var prodNo = $(".ct_list_pop td:nth-child(3)").attr("data-prodNo");
 			var prodNo = $(this).find("input[name=prodNo]").val();
-			alert(prodNo);
+			//alert(prodNo);
 			$.ajax( 
 					{
 						url : "/product/json/getProduct/"+prodNo ,
@@ -53,10 +53,12 @@
 							
 							var displayValue = "<h3>"
 														+"상품명 : "+JSONData.prodName+"<br/>"
-														+"상세정보 : "+JSONData.prodDetail+"<br/>"
-														+"제조일자 : "+JSONData.manuDate+"<br/>"
 														+"가   격 : "+JSONData.price+"<br/>"
-														+"등록일 : "+JSONData.regDateString+"<br/>"
+														+"등록일 : "+JSONData.regDateString+"<br/><br/>"
+														+"<a href='/product/getProduct?prodNo="+JSONData.prodNo+"'>상세정보</a>"
+														+"<c:if test="${user.role == 'admin'}">"
+														+"<a href='/product/updateProduct?prodNo="+JSONData.prodNo+"'> / 수정</a>"
+														+"</c:if>"
 														+"</h3>";
 							//Debug...									
 							//alert(displayValue);
@@ -65,6 +67,8 @@
 						}
 				});
 		});
+		
+		$()
 		
 		$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
 		$("h7").css("color" , "red");
