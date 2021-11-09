@@ -9,9 +9,9 @@ import com.model2.mvc.service.user.vo.UserVO;
 public class PurchaseVO {
 	
 	private UserVO buyer;	//구매자 정보
-	private String divyAddr;	//배송지
-	private String divyDate;	//배송일
-	private String divyRequest;	//배송요청사항
+	private String dlvyAddr;	//배송지
+	private String dlvyDate;	//배송일
+	private String dlvyRequest;	//배송요청사항
 	private Date orderDate;		//주문일자
 	private String paymentOption;	//결제 옵션
 	private ProductVO purchaseProd;	//판매 상품 정보
@@ -29,14 +29,14 @@ public class PurchaseVO {
 	public void setBuyer(UserVO buyer) {
 		this.buyer = buyer;
 	}
-	public String getDivyAddr() {
-		return divyAddr;
+	public String getlivyAddr() {
+		return dlvyAddr;
 	}
-	public void setDivyAddr(String divyAddr) {
-		this.divyAddr = divyAddr;
+	public void setDlvyAddr(String dlvyAddr) {
+		this.dlvyAddr = dlvyAddr;
 	}
-	public String getDivyDate() {
-		String[] date = divyDate.split("-");
+	public String getDlvyDate() {
+		String[] date = dlvyDate.split("-");
 		
 		String result = "";
 		for (int i = 0; i < date.length; i++) {
@@ -44,14 +44,14 @@ public class PurchaseVO {
 		}
 		return result;
 	}
-	public void setDivyDate(String divyDate) {
-		this.divyDate = divyDate;
+	public void setDlvyDate(String divyDate) {
+		this.dlvyDate = dlvyDate;
 	}
-	public String getDivyRequest() {
-		return divyRequest;
+	public String getDlvyRequest() {
+		return dlvyRequest;
 	}
-	public void setDivyRequest(String divyRequest) {
-		this.divyRequest = divyRequest;
+	public void setDlvyRequest(String dlvyRequest) {
+		this.dlvyRequest = dlvyRequest;
 	}
 	public Date getOrderDate() {
 		return orderDate;
@@ -98,8 +98,8 @@ public class PurchaseVO {
 	
 	@Override
 	public String toString() {
-		return "PurchaseVO [buyer=" + buyer + ", divyAddr=" + divyAddr
-				+ ", divyDate=" + divyDate + ", divyRequest=" + divyRequest
+		return "PurchaseVO [buyer=" + buyer + ", dlvyAddr=" + dlvyAddr
+				+ ", dlvyDate=" + dlvyDate + ", dlvyRequest=" + dlvyRequest
 				+ ", orderDate=" + orderDate + ", paymentOption="
 				+ paymentOption + ", purchaseProd=" + purchaseProd
 				+ ", receiverName=" + receiverName + ", receiverPhone="
