@@ -136,6 +136,8 @@ public class ProductController {
 		model.addAttribute("resultPage", resultPage);
 		model.addAttribute("search", search);
 		
+		//System.out.println(map.get("list"));
+		
 		return "forward:/product/listProduct.jsp";
 	}
 }

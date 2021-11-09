@@ -50,6 +50,13 @@
 			});
 		});
 		
+		//============= 상품 검 =============
+		$( function() {
+			$("a[href='#']:contains('상품 검색')").on("click" , function() {
+				self.location = "/product/listProduct?menu=search"
+			});
+		});
+		
 	</script>	
 	
 </head>
@@ -102,10 +109,10 @@
          			<!--  회원관리 아이템 -->
 					<ul class="list-group">
 						 <li class="list-group-item">
-						 	<a href="#">개인정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						 	<a href="#">개인정보조회</a> <i class="glyphicon glyphicon-ban-circle" style="color : #820000"></i>
 						 </li>
 						 <li class="list-group-item">
-						 	<a href="#">회원정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						 	<a href="#">회원정보조회</a> <i class="glyphicon glyphicon-ban-circle" style="color : #820000"></i>
 						 </li>
 					</ul>
 		        </div>
@@ -117,10 +124,10 @@
          			</div>
 					<ul class="list-group">
 						 <li class="list-group-item">
-						 	<a href="#">판매상품등록</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						 	<a href="#">판매상품등록</a> <i class="glyphicon glyphicon-ban-circle" style="color : #820000"></i>
 						 </li>
 						 <li class="list-group-item">
-						 	<a href="#">판매상품관리</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						 	<a href="#">판매상품관리</a> <i class="glyphicon glyphicon-ban-circle" style="color : #820000"></i>
 						 </li>
 					</ul>
 		        </div>
@@ -131,12 +138,12 @@
 							<i class="glyphicon glyphicon-shopping-cart"></i> 상품구매
 	    			</div>
 					<ul class="list-group">
-						 <li class="list-group-item"><a href="#">상품검색</a></li>
+						 <li class="list-group-item"><a href="#">상품 검색</a></li>
 						  <li class="list-group-item">
-						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-ban-circle" style="color : #820000"></i>
 						  </li>
 						 <li class="list-group-item">
-						 	<a href="#">최근본상품</a> <i class="glyphicon glyphicon-ban-circle"></i>
+						 	<a href="#">최근본상품</a> <i class="glyphicon glyphicon-ban-circle" style="color : #820000"></i>
 						 </li>
 					</ul>
 				</div>

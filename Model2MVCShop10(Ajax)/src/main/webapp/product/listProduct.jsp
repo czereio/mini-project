@@ -68,7 +68,6 @@
 				});
 		});
 		
-		$()
 		
 		$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
 		$("h7").css("color" , "red");

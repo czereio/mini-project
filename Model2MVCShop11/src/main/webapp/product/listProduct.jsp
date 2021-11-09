@@ -6,10 +6,25 @@
 <html>
 <head>
 <title>상품 목록 조회</title>
-
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<link href="/css/animate.min.css" rel="stylesheet">
+   	<link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+   	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	
+	<style>
+	  body {
+            padding-top : 50px;
+        }
+    </style>
+	
+	<script type="text/javascript">
 
 	function fncGetList(currentPage) {
 		/*
@@ -27,14 +42,21 @@
 			fncGetList(1);
 		});
 		
-		//상품 상세정보가 안 불러와지는데 . . . 뭐냐 이거 . . .
-		$( ".ct_list_pop td:nth-child(3)" ).on("click" , function() {
+		$( "td:nth-child(2)" ).on("click" , function() {
+			 self.location ="/product/getProduct?prodNo="+$(this).find("input[name=prodNo]").val();
+		});
+					
+		//==> userId LINK Event End User 에게 보일수 있도록 
+		$( "td:nth-child(2)" ).css("color" , "red");
+		
+		
+		$( "td:nth-child(6) > i" ).on("click" , function() {
 			//Debug..
 			//alert($(".ct_list_pop td:nth-child(3)").attr("data-prodNo"));
 			//self.location ="/product/getProduct?prodNo="+$(".ct_list_pop td:nth-child(3)").attr("data-prodNo");//attributer로 접근 가능
 			//var prodNo = $(".ct_list_pop td:nth-child(3)").attr("data-prodNo");
-			var prodNo = $(this).find("input[name=prodNo]").val();
-			//alert(prodNo);
+			var prodNo = $(this).find("input[name=prodNo2]").val();
+			alert(prodNo);
 			$.ajax( 
 					{
 						url : "/product/json/getProduct/"+prodNo ,
@@ -51,18 +73,16 @@
 							//Debug...
 							//alert("JSONData : \n"+JSONData);
 							
-							var displayValue = "<h3>"
-														+"상품명 : "+JSONData.prodName+"<br/>"
-														+"가   격 : "+JSONData.price+"<br/>"
-														+"등록일 : "+JSONData.regDateString+"<br/><br/>"
-														+"<a href='/product/getProduct?prodNo="+JSONData.prodNo+"'>상세정보</a>"
-														+"<c:if test="${user.role == 'admin'}">"
-														+"<a href='/product/updateProduct?prodNo="+JSONData.prodNo+"'> / 수정</a>"
-														+"</c:if>"
-														+"</h3>";
+							var displayValue =  "<br/><h7>"
+												+"상품명 : "+JSONData.prodName+"<br/>"
+												+"가   격 : "+JSONData.price+"<br/>"
+												+"등록일 : "+JSONData.regDateString+"<br/><br/>"
+												+"<c:if test="${user.role == 'admin'}">"
+												+"<a href='/product/updateProduct?prodNo="+JSONData.prodNo+"'>수정</a>"
+												+"</c:if></h7>";
 							//Debug...									
 							//alert(displayValue);
-							$("h3").remove();
+							$("h7").remove();
 							$( "#"+prodNo+"" ).html(displayValue);
 						}
 				});
@@ -81,121 +101,105 @@
 </script>
 </head>
 
-<body bgcolor="#ffffff" text="#000000">
-
-<div style="width:98%; margin-left:10px;">
-<!-- <form name="detailForm" action="/product/listProduct?menu=manage" method="post"> -->
-<form name="detailForm">
-
-<table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
-	<tr>
-		<td width="15" height="37">
-			<img src="/images/ct_ttl_img01.gif" width="15" height="37"/>
-		</td>
-		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="93%" class="ct_ttl01">상품 관리	
-					</td>
-				</tr>
-			</table>
-		</td>
-		<td width="12" height="37">
-			<img src="/images/ct_ttl_img03.gif" width="12" height="37"/>
-		</td>
-	</tr>
-</table>
-
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
-	<tr>
-		<td align="right">
-			<select name="searchCondition" class="ct_input_g" style="width:80px">
-				<option value="0" ${ ! empty search.searchCondition && search.searchCondition == 0 ? "selected" : ""}>상품번호</option>
-				<option value="1" ${ ! empty search.searchCondition && search.searchCondition == 1 ? "selected" : ""}>상품명</option>
-				<option value="2" ${ ! empty search.searchCondition && search.searchCondition == 2 ? "selected" : ""}>상품가격</option>
-			</select>
-			<input type="text" name="searchKeyword" value="${ ! empty search.searchKeyword ? search.searchKeyword : ""}" class="ct_input_g" style="width:200px; height:19px" />
-		</td>
-		
-		<td align="right" width="70">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td width="17" height="23">
-						<img src="/images/ct_btnbg01.gif" width="17" height="23">
-					</td>
-					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<!-- <a href="javascript:fncGetList(1);">검색</a> -->	<!-- function fncGetProductList(currentPage)의 인수인 currentPage 값을 입력해주지 않아 발생한 오류 -->
-						검색
-					</td>
-					<td width="14" height="23">
-						<img src="/images/ct_btnbg03.gif" width="14" height="23">
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
-	<tr>
-		<td colspan="11" >전체 ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지</td>
-	</tr>
-	<tr>
-		<td class="ct_list_b" width="100">No</td>
-		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">
-			상품명<br/>
-			<h7>(click : view product detail)</h7>
-		</td>
-		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">가격</td>
-		<td class="ct_line02"></td>
-		<td class="ct_list_b">등록일</td>	
-		<td class="ct_line02"></td>
-		<td class="ct_list_b">현재상태</td>	
-	</tr>
-	<tr>
-		<td colspan="11" bgcolor="808285" height="1"></td>
-	</tr>
+<body>
+	<!-- ToolBar Start /////////////////////////////////////-->
+	<jsp:include page="/layout/toolbar.jsp" />
+   	<!-- ToolBar End /////////////////////////////////////-->
 	
-	<c:set var="i" value="0"/>
-	<c:forEach var="product" items="${list}">
-		<c:set var="i" value="${i+1}"/>
-		<tr class="ct_list_pop">
-			<td align="center">${i}</td>	<%-- 다음 출력 시 list.size()의 정수가 1씩 증가하여 출력 --%>
-			<td></td>
-			<td align="left" data-prodNo="${product.prodNo}"><!-- data-prodNo :: 값을 받아오고 싶은데 화면에 출력하고 싶지는 않을 때 쓰는 attributer -->
-				<!-- <a href="/product/getProduct?prodNo=${product.prodNo}">${product.prodName}</a> -->
-				<input type="hidden" name="prodNo" value="${product.prodNo}"/>
-				${product.prodName}
-			</td>
-			<td></td>
-			<td align="left">${product.price}</td>
-			<td></td>
-			<td align="left">${product.regDate}</td>
-			<td></td>
-			<td align="left"><%--=productVO.getTranCode()--%>판매중</td>	
-		</tr>
-		<tr>
-			<td id="${product.prodNo}" colspan="11" bgcolor="D6D7D6" height="1"></td>
-		</tr>	
-	</c:forEach>
-</table>
+	<!--  화면구성 div Start /////////////////////////////////////-->
+	<div class="container">
+	
+		<div class="page-header text-info">
+	       <h3>상품목록조회</h3>
+	    </div>
+	    
+	    <!-- table 위쪽 검색 Start /////////////////////////////////////-->
+	    <div class="row">
+	    
+		    <div class="col-md-6 text-left">
+		    	<p class="text-primary">
+		    		전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
+		    	</p>
+		    </div>
+		    
+		    <div class="col-md-6 text-right">
+			    <form class="form-inline" name="detailForm">
+			    
+				  <div class="form-group">
+				    <select class="form-control" name="searchCondition" >
+						<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>상품번호</option>
+						<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>상품명</option>
+						<option value="2"  ${ ! empty search.searchCondition && search.searchCondition==2 ? "selected" : "" }>가격</option>
+					</select>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label class="sr-only" for="searchKeyword">검색어</label>
+				    <input type="text" class="form-control" id="searchKeyword" name="searchKeyword"  placeholder="검색어"
+				    			 value="${! empty search.searchKeyword ? search.searchKeyword : '' }"  >
+				  </div>
+				  
+				  <button type="button" class="btn btn-default">검색</button>
+				  
+				  <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
+				  <input type="hidden" id="currentPage" name="currentPage" value=""/>
+				  
+				</form>
+	    	</div>
+	    	
+		</div>
+		<!-- table 위쪽 검색 Start /////////////////////////////////////-->
+		
+		
+      <!--  table Start /////////////////////////////////////-->
+      <table class="table table-hover table-striped" >
+      
+        <thead>
+          <tr>
+            <th align="center">No</th>
+            <th align="left" >상품명</th>
+            <th align="left">가격</th>
+            <th align="left">등록일</th>
+            <th align="left">현재상태</th>
+            <th align="left">간략정보</th>
+          </tr>
+        </thead>
+       
+		<tbody>
+		
+		  <c:set var="i" value="0" />
+		  <c:forEach var="product" items="${list}">		<!-- copy & paste는 신중히 -->
+			<c:set var="i" value="${ i+1 }" />
+			<tr>
+			  <td align="center">${ i }</td>
+			  <td align="left"  title="Click : 상품 정보 확인" data-prodNo="${product.prodNo}">${product.prodName}
+			  	<input type="hidden" name="prodNo" value="${product.prodNo}" />
+			  </td>
+			  <td align="left">${product.price}</td>
+			  <td align="left">${product.regDate}</td>
+			  <td align="left">판매중</td>
+			  <td align="left">
+			  	<i class="glyphicon glyphicon-ok" id= "${product.prodNo}">
+			  		<input type="hidden" name="prodNo2" value="${product.prodNo}">
+			  	</i>
+			  		
+			  </td>
+			</tr>
+          </c:forEach>
+        
+        </tbody>
+      
+      </table>
+	  <!--  table End /////////////////////////////////////-->
+	  
+ 	</div>
+ 	<!--  화면구성 div End /////////////////////////////////////-->
+ 	
+ 	
+ 	<!-- PageNavigation Start... -->
+	<jsp:include page="../common/pageNavigator_new.jsp"/>
+	<!-- PageNavigation End... -->
+	
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
-	<tr>
-		<td align="center">
-		<input type="hidden" id="currentPage" name="currentPage" value=""/>
-			<jsp:include page="../common/pageNavigator.jsp"/>
-    	</td>
-	</tr>
-</table>
-<!--  페이지 Navigator 끝 -->
-
-</form>
-
-</div>
 </body>
 </html>
