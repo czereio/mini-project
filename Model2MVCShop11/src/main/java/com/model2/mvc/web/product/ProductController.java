@@ -106,11 +106,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="updateProduct",method=RequestMethod.POST)
-	public String updateProduct( @ModelAttribute("product") Product product , Model model , HttpSession session) throws Exception{
+	public String updateProduct( @ModelAttribute("product") Product product, Model model) throws Exception{
 
 		System.out.println("/product/updateProduct : POST");
 		//Business Logic
+		
 		productService.updateProduct(product);
+		System.out.println(":: controller -> "+product);
 		
 		return "redirect:/product/getProduct?prodNo="+product.getProdNo();
 	}

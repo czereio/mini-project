@@ -117,7 +117,7 @@
 	
 		<div class="page-header text-center">
 	       <h3 class=" text-info">상 품 등 록</h3>
-	       <h5 class="text-muted">제조일자 등록이 <strong class="text-danger">왜</strong> 안 되는데?</h5>
+	       <h5 class="text-muted">상품 정보를 <strong class="text-danger">왜</strong> 안 되는데?</h5>
 	    </div>
 	    
 	    <!-- form Start /////////////////////////////////////-->
@@ -166,8 +166,8 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >수 &nbsp;정</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취 &nbsp;소</a>
+		      <button type="button" class="btn btn-primary"  >등&nbsp;록</button>
+			  <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a>
 		    </div>
 		  </div>
 		</form>

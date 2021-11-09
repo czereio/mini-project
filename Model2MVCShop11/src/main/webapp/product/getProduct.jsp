@@ -213,13 +213,15 @@
 		<div class="page-header">
 	       <h3 class=" text-info">상품상세정보</h3>
 	       <c:if test="${user.role == 'admin'}">
-	       <h5 class="text-muted">상품 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
+	       <h5 class="text-muted">상품 정보를 <strong class="text-danger">최신정보로 업데이트 </strong>해 주세요.</h5>
 	       </c:if>
 	    </div>
 	
 		<div class="row">
 	  		<div class="col-xs-4 col-md-2"><strong>상 품 명</strong></div>
-			<div class="col-xs-8 col-md-4">${product.prodName}</div>
+			<div class="col-xs-8 col-md-4">
+				<input type="hidden" value="${product.prodNo}">
+				${product.prodName}</div>
 		</div>
 		
 		<hr/>
@@ -241,6 +243,13 @@
 		<div class="row">
 	  		<div class="col-xs-4 col-md-2 "><strong>가격</strong></div>
 			<div class="col-xs-8 col-md-4">${product.price}	</div>
+		</div>
+		
+		<hr/>
+		
+		<div class="row">
+	  		<div class="col-xs-4 col-md-2 "><strong>상품 이미지</strong></div>
+			<div class="col-xs-8 col-md-4">${product.fileName}	</div>
 		</div>
 		
 		<hr/>
